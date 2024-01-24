@@ -28,16 +28,12 @@ export class ProjectItem
 
   @autobind
   dragStartHandler(event: DragEvent) {
-    console.log("Drag Starts");
-    console.log("Event", event);
     event.dataTransfer!.setData("text/plain", this.project.id);
     event.dataTransfer!.effectAllowed = "move";
   }
 
   @autobind
-  dragEndHandler(_: DragEvent) {
-    console.log("Drag Ends");
-  }
+  dragEndHandler(_: DragEvent) {}
 
   configure() {
     this.element.addEventListener("dragstart", this.dragStartHandler);

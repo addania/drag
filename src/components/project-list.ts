@@ -35,7 +35,6 @@ export class ProjectList
   dragOverHandler(event: DragEvent) {
     if (event.dataTransfer && event.dataTransfer.types[0] === "text/plain") {
       event.preventDefault();
-      console.log("dragOverHandler fired", event);
       const listEl = this.element.querySelector("ul")!;
       listEl.classList.add("droppable");
     }
@@ -43,9 +42,7 @@ export class ProjectList
 
   @autobind
   dropHandler(event: DragEvent) {
-    console.log("dropHandler fired", event);
     const projectId = event.dataTransfer!.getData("text/plain");
-    console.log("projectId", projectId);
     projectState.moveProject(
       projectId,
       this.type === "active" ? ProjectStatus.Active : ProjectStatus.Finished
@@ -53,8 +50,7 @@ export class ProjectList
   }
 
   @autobind
-  dragLeaveHandler(event: DragEvent) {
-    console.log("dragLeaveHandler fired", event);
+  dragLeaveHandler(_: DragEvent) {
     const listEl = this.element.querySelector("ul")!;
     listEl.classList.remove("droppable");
   }
